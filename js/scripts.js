@@ -14,7 +14,7 @@ function getPrimes(number) {
       }
     });
   }
-  
+
   return numberArray;
 }
 
@@ -23,14 +23,18 @@ function getPrimes(number) {
 $(function(){
   $("form").submit(function(event) {
     event.preventDefault();
-    $("form").hide();
 
     var numberInput = $("#number").val();
-    var primeArray = getPrimes(numberInput);
 
-    primeArray.forEach(function(prime) {
-      $("#primes").append("<li>"+prime+"</li>");
-    });
+    if (numberInput > 10000 || numberInput < 0) {
+      alert("Enter a number between 0 and 10,000");
+    } else {
+      var primeArray = getPrimes(numberInput);
+      primeArray.forEach(function(prime) {
+        $("#primes").append("<li>"+prime+"</li>");
+      });
+      $("form").hide();
+    }
 
   });
 })
